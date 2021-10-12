@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Clustalo to align the multiple fasta sequences
+clustalo -i 639cox.fasta --threads=200 > worm_alignment.txt
+
+# Plotcon to plot the conservation
+plotcon -sequences worm_alignment.txt -winsize 4 -graph x11
+

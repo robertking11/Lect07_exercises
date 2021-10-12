@@ -1,0 +1,16 @@
+
+
+#Searching on the protein database and returning the full primate HOXA7 gene 
+#accesions to a file
+esearch -db protein -query "txid9443[Organism:exp] AND HOXA7[Gene Name] NOT PARTIAL" | efetch -db protein -format acc > Primates_HOXA7.acc
+
+#Searching on the protein database and returning the full primate HOXA7 gene
+#accesions to a file
+esearch -db protein -query "txid9443[Organism:exp] AND HOXA7[Gene Name] NOT PARTIAL" | efetch -db protein -format fasta > Primates_HOXA7.fa
+
+#Clustalo to align the primate fasta files
+clustalo -i Primates_HOXA7.fa --threads 200 > Primates_HOXA7_Alignment.txt
+
+#Plotcon to make the conservation plot
+plotcon -sequences Primates_HOXA7_Alignment.txt -winsize 4 -graph x11
+
